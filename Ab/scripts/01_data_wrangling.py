@@ -4,7 +4,7 @@
 
 import pandas as pd
 
-data = pd.read_csv("data.csv", encoding="latin1")
+data = pd.read_csv("../datas/data.csv", encoding="latin1")
 
 
 country_codes = []
@@ -44,5 +44,5 @@ data["ClubContinent"] = continents
 
 print(data["ClubContinent"].value_counts())
 
-data.to_csv("classified_clubs.csv", index=False)
+data.to_csv("../data/classified_clubs.csv", index=False)
 print("\nSaved to classified_clubs.csv")

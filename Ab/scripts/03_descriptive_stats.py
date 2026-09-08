@@ -1,13 +1,12 @@
 # 03_descriptive_stats.py
 # Descriptive statistics and charts for SoT%, comparing Europe vs
-# Non-Europe based players. Run once for the population, once for the
-# sample (just change INPUT_FILE and IS_POPULATION below).
+# Non-Europe based players.
 
 import pandas as pd
 import matplotlib.pyplot as plt
 
-INPUT_FILE = "population.csv"   # change to "sample.csv" for the sample run
-IS_POPULATION = True            # False when running on sample.csv
+INPUT_FILE = "../data/population.csv"   
+IS_POPULATION = True            
 
 data = pd.read_csv(INPUT_FILE)
 
@@ -41,7 +40,7 @@ ax2.hist(non_europe, bins=15, color="#2C5F2D", edgecolor="white")
 ax2.set_title("Non-Europe")
 ax2.set_xlabel("Shot Accuracy (SoT%)")
 plt.tight_layout()
-plt.savefig("histogram.png", dpi=150)
+plt.savefig("../data/histogram.png", dpi=150)
 plt.close()
 
 # Boxplot -- easy way to see median, spread and any outliers at a glance.
@@ -49,7 +48,7 @@ fig, ax = plt.subplots(figsize=(6, 5))
 ax.boxplot([europe, non_europe], tick_labels=["Europe", "Non-Europe"])
 ax.set_ylabel("Shot Accuracy (SoT%)")
 plt.tight_layout()
-plt.savefig("boxplot.png", dpi=150)
+plt.savefig("../data/boxplot.png", dpi=150)
 plt.close()
 
 print("\nSaved histogram.png and boxplot.png")

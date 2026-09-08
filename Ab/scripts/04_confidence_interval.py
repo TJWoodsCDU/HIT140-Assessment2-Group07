@@ -1,17 +1,17 @@
 # 04_confidence_interval.py
 # 95% confidence interval for the mean SoT% in each group, and for the
-# difference between the two groups. Run once for the population, once for the sample.
+# difference between the two groups. 
 
 
 import pandas as pd
 import math
 
-INPUT_FILE = "population.csv"   # change to "sample.csv" for the sample run
+INPUT_FILE = "../data/population.csv"   
 
 # t-critical values for a 95% CI, looked up from a t-table.
 # Population run: Europe df=274, Non-Europe df=71, difference df=345
 # Sample run:     Europe df=59,  Non-Europe df=59, difference df=118
-if INPUT_FILE == "population.csv":
+if INPUT_FILE == "../data/population.csv":
     T_EUROPE = 1.969
     T_NON_EUROPE = 1.994
     T_DIFFERENCE = 1.967
@@ -70,6 +70,6 @@ ax.set_title("Mean SoT% with 95% Confidence Interval")
 for i, m in enumerate(means):
     ax.text(i, m + errors[i] + 1, f"{m:.1f}%", ha="center", fontweight="bold")
 plt.tight_layout()
-plt.savefig("bar_with_ci.png", dpi=150)
+plt.savefig("../data/bar_with_ci.png", dpi=150)
 plt.close()
 print("\nSaved bar_with_ci.png")
