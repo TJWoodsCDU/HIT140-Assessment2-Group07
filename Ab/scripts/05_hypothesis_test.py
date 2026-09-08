@@ -7,7 +7,7 @@
 import pandas as pd
 import math
 
-INPUT_FILE = "population.csv"   
+INPUT_FILE = "../data/population.csv"   
 ALPHA = 0.05
 
 data = pd.read_csv(INPUT_FILE)
