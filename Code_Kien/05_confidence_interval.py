@@ -2,7 +2,7 @@ import pandas as pd
 import scipy.stats as st
 import math
 
-sample = pd.read_csv("Code_Kien/sample.csv", encoding="latin1")
+sample = pd.read_csv("Code_Kien/sample.csv", encoding="utf-8-sig")
 
 x_bar = sample["MinPerMatch"].mean()
 s = sample["MinPerMatch"].std()

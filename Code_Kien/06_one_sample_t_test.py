@@ -1,7 +1,7 @@
 import pandas as pd
 import scipy.stats as st
 
-sample = pd.read_csv("Code_Kien/sample.csv", encoding="latin1")
+sample = pd.read_csv("Code_Kien/sample.csv", encoding="utf-8-sig")
 
 sample_data = sample["MinPerMatch"].to_numpy()
 

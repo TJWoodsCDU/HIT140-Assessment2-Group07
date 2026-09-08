@@ -1,6 +1,6 @@
 import pandas as pd
 
-sample = pd.read_csv("Code_Kien/sample.csv", encoding="latin1")
+sample = pd.read_csv("Code_Kien/sample.csv", encoding="utf-8-sig")
 
 # Measures of Central Tendency
 mean_val = sample["MinPerMatch"].mean()

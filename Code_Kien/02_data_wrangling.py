@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("Code_Kien/data.csv", encoding="latin1")
+df = pd.read_csv("Code_Kien/data.csv", encoding="utf-8-sig")
 print("\nData raw shape:", df.shape)
 
 cleaned_rows = []
@@ -30,5 +30,5 @@ df["MinPerMatch"] = np.where(
 print("\nPopulation size:", len(df))
 print(df[["Player", "Club", "MP", "Min", "MinPerMatch"]].describe())
 
-df.to_csv("Code_Kien/population_data.csv", index=False)
+df = df.to_csv("Code_Kien/population_played.csv", index=False, encoding="utf-8-sig")
 print("Saved: population_data.csv")
