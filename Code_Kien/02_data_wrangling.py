@@ -20,7 +20,6 @@ df = pd.DataFrame(cleaned_rows)
 
 df["MinPerMatch"] = df["Min"] / df["MP"]
 
-# Capping player with MinPerMatch 90-minute threshold
 threshhold = 90
 df["MinPerMatch"] = np.where(
     df["MinPerMatch"] > threshhold,
