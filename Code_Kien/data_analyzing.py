@@ -94,19 +94,14 @@ print("Confidence Interval of the mean: %.2f to %.2f" % (ci_low, ci_upp))
 # One-sample t-test
 print("\nOne-sample t-test")
 
-# sample values (your MinPerMatch column, as a numpy array)
 sample_data = sample["MinPerMatch"].to_numpy()
 
-# compute mean and standard deviation of the sample
 print("Computing the basic statistics ...")
 x_bar = st.tmean(sample_data)
 s = st.tstd(sample_data)
 print("\t Sample mean: %.2f" % x_bar)
 print("\t Sample std. dev.: %.2f" % s)
 
-# perform one-sample t-test
-# null hypothesis: population mean = 90
-# alternative hypothesis: population mean < 90 (players play less than a full match)
 t_stats, p_val = st.ttest_1samp(sample_data, 90, alternative='less')
 print("\n Computing t* ...")
 print("\t t-statistic (t*): %.2f" % t_stats)
