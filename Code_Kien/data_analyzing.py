@@ -26,9 +26,10 @@ df = pd.DataFrame(cleaned_rows)
 df["MinPerMatch"] = df["Min"] / df["MP"]
 
 # Capping player with MinPerMatch 90-minute threshold
+threshhold = 90
 df["MinPerMatch"] = np.where(
-    df["MinPerMatch"] > 90,
-    90,
+    df["MinPerMatch"] > threshhold,
+    threshhold,
     df["MinPerMatch"]
 )
 
@@ -95,13 +96,12 @@ print("\nOne-sample t-test")
 
 sample_data = sample["MinPerMatch"].to_numpy()
 
-print("Computing the basic statistics ...")
 x_bar = st.tmean(sample_data)
 s = st.tstd(sample_data)
 print("\t Sample mean: %.2f" % x_bar)
 print("\t Sample std. dev.: %.2f" % s)
 
-t_stats, p_val = st.ttest_1samp(sample_data, 90, alternative='less')
+t_stats, p_val = st.ttest_1samp(sample_data, threshold, alternative='less')
 print("\n Computing t* ...")
 print("\t t-statistic (t*): %.2f" % t_stats)
 
