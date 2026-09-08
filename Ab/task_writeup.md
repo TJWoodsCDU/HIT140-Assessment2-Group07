@@ -1,4 +1,4 @@
-# Club Continent & Shot Accuracy — Task Write-Up
+# Club Continent & Shot Accuracy: Task Write-Up
 
 **Analytic question:** Is there a significant difference in shot accuracy
 (SoT%) between FIFA World Cup 2026 players based at European clubs and
@@ -18,7 +18,7 @@ players based at non-European clubs?
 ## 1. Data Wrangling
 
 - **Source:** FBref Shooting Stats table, FIFA World Cup 2026
-  (`fbref.com/en/comps/1/shooting/World-Cup-Stats`) — all 1,039 players who
+  (`fbref.com/en/comps/1/shooting/World-Cup-Stats`) all 1,039 players who
   featured in the tournament.
 - **Join:** club affiliation was pulled from a second FBref export (Standard
   Stats table, which includes a `Club` field) and combined with the shooting
@@ -32,14 +32,14 @@ players based at non-European clubs?
 - **3 players had no club listed** in the export. Rather than drop them or
   guess, each was looked up manually and their club filled in by hand:
   Abdulelah Al-Amri (Al-Nassr FC, Saudi Arabia), Aziz Gʻaniyev (Al Bataeh
-  CSC, UAE), and Mohanad Lasheen (Pyramids FC, Egypt) — all non-European.
+  CSC, UAE), and Mohanad Lasheen (Pyramids FC, Egypt) all non-European.
   Of the three, only Al-Amri had enough shots (4) to clear the 3-shot
   threshold below, so he's the only one of the three who ends up in the
   final population; the other two are excluded by the shot-count rule
   regardless, not because their club was unknown.
 - **Feature engineering:** two new variables were engineered from the raw
   `Club` text field: `ClubCountryCode` (extracted by splitting the text) and
-  `ClubContinent` (the classification derived from it) — neither existed in
+  `ClubContinent` (the classification derived from it) neither existed in
   the source data.
 - **Encoding:** the raw export required `latin1` decoding rather than UTF-8
   due to how the file was saved during export; this affects the display of
@@ -51,7 +51,7 @@ players based at non-European clubs?
 `Club` values follow the pattern `"<tier>.<country code> <club name>"` (e.g.
 `"1.eng Leeds United"`). The country code was extracted with basic string
 splitting, then classified as **Europe** or **Non-Europe** using UEFA
-membership (football convention) rather than strict geography — meaning
+membership (football convention) rather than strict geography, meaning
 Turkey, Russia, Kazakhstan, Cyprus, and Israel are classified as Europe,
 since their clubs compete in UEFA competitions. This classification was
 independently verified against FBref's own country/confederation index
@@ -68,7 +68,7 @@ the data, including every transcontinental edge case.
   time as a robustness check on a smaller subset.
 - Descriptive statistics are calculated accordingly: **population variance**
   (divides by N) for the 347-player population, and **sample variance**
-  (divides by N−1) for the 120-player sample — parameters describe the
+  (divides by N−1) for the 120-player sample parameters describe the
   population; statistics estimate it from a sample.
 
 ## 4. Descriptive Statistics
@@ -86,8 +86,8 @@ population, under 1 in the sample) relative to the spread within each group.
 
 **Distribution shape:** a histogram of SoT% for each group (see
 `histogram_population.png`) shows a right-skewed distribution for both
-groups, not a normal distribution — there's a concentration of players at
-low accuracy (many players with 0% — shots taken, none on target), tapering
+groups, not a normal distribution there's a concentration of players at
+low accuracy (many players with 0% shots taken, none on target), tapering
 off toward higher values. This is expected for a bounded percentage built
 from small shot counts, and is the reason the **Central Limit Theorem**
 matters here: even though individual player SoT% values aren't normally
@@ -99,11 +99,11 @@ means despite the skew in the raw data.
 ## 5. Confidence Interval
 
 Since the population standard deviation is unknown, a **t-based** confidence
-interval was used (not a z-based one) — consistent with using the
+interval was used (not a z-based one) consistent with using the
 t-distribution once the population SD has to be estimated from the sample
 itself.
 
-95% CI for the difference in means (Europe − Non-Europe), using pooled
+95% CI for the difference in means (Europe - Non-Europe), using pooled
 variance (assumes equal population variance between groups, df = n1+n2−2):
 
 - **Population:** 2.86 [-3.07, 8.78], df = 345
@@ -117,7 +117,7 @@ plausible value in both cases.
 Following the standard 4-step hypothesis testing process:
 
 1. **State the hypotheses.**
-   H₀: mean SoT% is equal between Europe-based and Non-Europe-based players
+   H₀: mean SoT% is equal between Europe-based and Non Europe-based players
    H₁: mean SoT% is not equal between the two groups (two-tailed)
 2. **Choose the test and significance level.** A two-sample independent
    t-test, α = 0.05, using pooled variance (df = n1+n2−2).
@@ -138,7 +138,7 @@ non-European clubs at the FIFA World Cup 2026. The result holds consistently
 across both the full population and an independent stratified sample.
 
 **Interpretive note:** this doesn't contradict the visible concentration of
-elite attacking talent in Europe — 17 of the tournament's top 20 shooters *by
+elite attacking talent in Europe 17 of the tournament's top 20 shooters *by
 volume* are Europe-based. But shot volume and shot accuracy are different
 constructs: volume reflects playing time and tactical role, while accuracy is
 a rate that isn't automatically inherited from a league's overall quality.
@@ -146,7 +146,7 @@ a rate that isn't automatically inherited from a league's overall quality.
 ## 8. Limitations
 
 - The Europe/Non-Europe classification relies on a UEFA-membership
-  convention rather than strict geography — a defensible but explicit
+  convention rather than strict geography a defensible but explicit
   modeling choice, documented above.
 - The 3-shot minimum threshold is a judgment call; a different cutoff could
   shift the qualifying population slightly.
