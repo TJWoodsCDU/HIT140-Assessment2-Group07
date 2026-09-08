@@ -75,7 +75,6 @@ x_bar = sample["MinPerMatch"].mean()
 s = sample["MinPerMatch"].std()
 n = len(sample)
 
-
 z_score = st.norm.ppf(q=0.975)
 
 std_err = s / math.sqrt(n)
