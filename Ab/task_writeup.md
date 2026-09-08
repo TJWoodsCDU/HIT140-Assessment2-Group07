@@ -25,7 +25,7 @@ players based at non-European clubs?
   data using a **left join** on a shared row key, keeping every row from the
   shooting table and attaching the matching `Club` value from the second
   table.
-- **Missing data — listwise deletion:** SoT% is undefined for any player
+- **Missing data listwise deletion:** SoT% is undefined for any player
   with zero shots, and unreliable for very low shot counts (e.g. 1 shot on
   target out of 1 attempt reads as a "perfect" 100%). Players with fewer
   than 3 shots were excluded row-wise (listwise/case deletion).
