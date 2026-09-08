@@ -12,4 +12,6 @@ Variable of interest: MinPerMatch = Min / MP
 Test: One-sample t-test
 H0: population mean MinPerMatch = 90
 H1: population mean MinPerMatch < 90 (one-tailed)
+
+Please run the Python files in the marking order from 01 to 06 to avoid error
 """
