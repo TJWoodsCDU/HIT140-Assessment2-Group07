@@ -1,6 +1,8 @@
 # 01_data_wrangling.py
 # Loads the shooting stats + club data, works out which continent each
 # player's club is in, and saves the result.
+import os
+os.chdir(os.path.dirname(__file__))
 
 import pandas as pd
 
@@ -18,8 +20,7 @@ for club in data["Club"]:
 
 data["ClubCountryCode"] = country_codes
 
-# 3 players had no club listed in the original FBref export. We looked
-# them up manually instead of just dropping them or guessing:
+# 3 players had no club listed in the original FBref export. I looked them up manually instead of just dropping them or guessing:
 # All three are non-European, so we fill in their country codes by hand.
 data.loc[data["Player"] == "Abdulelah Al-Amri", "ClubCountryCode"] = "sa"
 data.loc[data["Player"].str.contains("niyev", na=False), "ClubCountryCode"] = "ae"
@@ -44,5 +45,5 @@ data["ClubContinent"] = continents
 
 print(data["ClubContinent"].value_counts())
 
-data.to_csv("../data/classified_clubs.csv", index=False)
+data.to_csv("../datas/classified_clubs.csv", index=False)
 print("\nSaved to classified_clubs.csv")
