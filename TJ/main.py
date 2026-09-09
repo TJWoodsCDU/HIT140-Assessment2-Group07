@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 import scipy.stats as st
+# Assert cwd reads file paths correctly
+import os
+os.chdir(os.path.dirname(__file__))
 
 # Analytic Question Formulation
 # Question: Is there a significant difference in average team age between teams
