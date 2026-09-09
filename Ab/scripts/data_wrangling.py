@@ -6,7 +6,7 @@ os.chdir(os.path.dirname(__file__))
 
 import pandas as pd
 
-data = pd.read_csv("../datas/data.csv", encoding="latin1")
+data = pd.read_csv("../datas/data.csv", encoding="cp437")
 
 
 country_codes = []
