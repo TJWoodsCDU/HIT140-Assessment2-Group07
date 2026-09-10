@@ -24,6 +24,12 @@ import matplotlib.pyplot as plt
 from scipy import stats
 from scipy.stats import ttest_1samp
 
+import sys
+sys.stdout.reconfigure(encoding="utf-8")
+
+import os
+os.chdir(os.path.dirname(_file_)) 
+
 df = pd.read_csv("fifa_playing_time.csv")
 print("FIRST FIVE ROWS")
 print(df.head()) 
